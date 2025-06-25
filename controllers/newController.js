@@ -1,3 +1,3 @@
-const getNewController = (req, res) => res.send("Test new");
+const getNewController = (req, res) => res.render("form");
 
 module.exports = { get: getNewController };
