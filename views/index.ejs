@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Mini Message Board</title>
+  </head>
+  <body>
+    <main>
+      <ul>
+        <% for (message of messages){ %>
+        <li>
+          <div>
+            <span><%= message.user %></span>
+            <span><%= message.added.toISOString() %></span>
+          </div>
+          <p><%= message.text %></p>
+        </li>
+        <%}%>
+      </ul>
+    </main>
+  </body>
+</html>

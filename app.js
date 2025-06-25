@@ -6,6 +6,9 @@ const newRouter = require("./routes/newRouter.js");
 
 const app = express();
 
+app.set("views", "views");
+app.set("view engine", "ejs");
+
 const PORT = process.env.PORT || 80;
 
 app.use("/new", newRouter);
