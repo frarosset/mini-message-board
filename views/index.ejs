@@ -12,7 +12,7 @@
         <li>
           <div>
             <span><%= message.user %></span>
-            <span><%= message.added.toISOString() %></span>
+            <span><%= dateToStr(message.added) %></span>
           </div>
           <p><%= message.text %></p>
         </li>
