@@ -1,6 +1,6 @@
 const { addMessage } = require("../messagesDb.js");
 const textModeration = require("../utils/textModeration.js");
-const getNewController = (req, res) => res.render("form");
+const getNewController = (req, res) => res.render("new");
 
 const postNewController = async (req, res, next) => {
   const { text, user } = req.body;
@@ -12,7 +12,11 @@ const postNewController = async (req, res, next) => {
 
     // filter out harmful content
     if (moderationOutput.isHarmful) {
-      res.render("form");
+      res.render("newHarmful", {
+        harmfulCategories: moderationOutput.harmfulCategories,
+        text,
+        user,
+      });
       return;
     }
 

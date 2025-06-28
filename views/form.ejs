@@ -1,10 +1,10 @@
 <%# Form with method and action makes a network request %>
 <form method="POST" action="/new">
   <label for="input-user">Your name</label>
-  <input name="user" id="input-user" />
+  <input name="user" id="input-user" value="<%=locals.user%>" />
 
   <label for="input-text">Message</label>
-  <input name="text" id="input-text" required />
+  <input name="text" id="input-text" value="<%=locals.text%>" required />
 
   <a href="/">Back</a>
   <button type="submit">POST</button>

@@ -24,13 +24,14 @@ async function textModeration(text) {
     throw err;
   }
 
-  const isHarmful = result.body.categoriesAnalysis.reduce((isHarmful, item) => {
-    return isHarmful || item.severity >= minHarmfulSeverityLevel;
-  }, false);
+  const harmfulCategories = result.body.categoriesAnalysis.filter(
+    (item) => item.severity >= minHarmfulSeverityLevel
+  );
 
   const outcome = {
     categoriesAnalysis: result.body.categoriesAnalysis,
-    isHarmful,
+    harmfulCategories: harmfulCategories,
+    isHarmful: harmfulCategories.length > 0,
   };
 
   //   for (let i = 0; i < result.body.categoriesAnalysis.length; i++) {
