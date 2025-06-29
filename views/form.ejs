@@ -1,10 +1,24 @@
 <%# Form with method and action makes a network request %>
 <form method="POST" action="/new">
   <label for="input-user">Your name</label>
-  <input name="user" id="input-user" value="<%=locals.user%>" />
+  <input
+    name="user"
+    id="input-user"
+    value="<%=locals.user%>"
+    minlength="<%= process.env.USER_MIN_LENGTH %>"
+    maxlength="<%= process.env.USER_MAX_LENGTH %>"
+    pattern="<%= process.env.USER_ALLOWED_CHARS %>"
+  />
 
   <label for="input-text">Message</label>
-  <input name="text" id="input-text" value="<%=locals.text%>" required />
+  <input
+    name="text"
+    id="input-text"
+    value="<%=locals.text%>"
+    required
+    minlength="<%= process.env.TEXT_MIN_LENGTH %>"
+    maxlength="<%= process.env.TEXT_MAX_LENGTH %>"
+  />
 
   <a href="/">Back</a>
   <button type="submit">POST</button>
