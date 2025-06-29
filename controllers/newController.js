@@ -14,7 +14,7 @@ const postNewController = async (req, res, next) => {
 
     // filter out harmful content
     if (moderationOutput.isHarmful) {
-      res.render("newHarmful", {
+      res.status(400).render("newHarmful", {
         harmfulCategories: moderationOutput.harmfulCategories,
         text,
         user,
