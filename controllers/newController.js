@@ -1,9 +1,11 @@
 const { addMessage } = require("../messagesDb.js");
 const textModeration = require("../utils/textModeration.js");
+const { matchedData } = require("express-validator");
+
 const getNewController = (req, res) => res.render("new");
 
 const postNewController = async (req, res, next) => {
-  const { text, user } = req.body;
+  const { text, user } = matchedData(req); // req.body
 
   try {
     // apply moderation
