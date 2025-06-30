@@ -13,13 +13,10 @@
       <ul class="message-list">
         <% for (let idx= messages.length -1; idx>=0; idx--){ const message =
         messages[idx]; %>
-        <li class="message">
-          <header class="message-header">
-            <span class="message-user"><%= message.user %></span>
-            <span>•</span>
-            <span class="message-added"><%= dateToStr(message.added) %></span>
-          </header>
-          <p class="message-text"><%= message.text %></p>
+        <li>
+          <a href="/message/<%=message.id%>">
+            <%- include("message", {message, dateToStr}) _%>
+          </a>
         </li>
         <%}%>
       </ul>
