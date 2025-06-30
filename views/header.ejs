@@ -3,7 +3,7 @@
   <% if(locals.includeLastUpdated){ %>
   <a
     class="last-updated"
-    href="."
+    href="javascript:window.location.href=window.location.href"
     title="Last updated on <%= (new Date()).toLocaleString([], {}) %>"
     ><span class="icon icon-rotate"></span> <%= (new Date().toLocaleString([], {
     month: "numeric", day: "numeric",hour: "numeric",minute: "numeric"})) %>
