@@ -11,7 +11,8 @@
     <main>
       <a class="button new-message" href="/new">Post a new message</a>
       <ul class="message-list">
-        <% for (message of messages){ %>
+        <% for (let idx= messages.length -1; idx>=0; idx--){ const message =
+        messages[idx]; %>
         <li class="message">
           <header class="message-header">
             <span class="message-user"><%= message.user %></span>
