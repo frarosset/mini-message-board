@@ -1,25 +1,31 @@
 <%# Form with method and action makes a network request %>
-<form method="POST" action="/new">
-  <label for="input-user">Your name</label>
-  <input
-    name="user"
-    id="input-user"
-    value="<%=locals.user%>"
-    minlength="<%= process.env.USER_MIN_LENGTH %>"
-    maxlength="<%= process.env.USER_MAX_LENGTH %>"
-    pattern="<%= process.env.USER_ALLOWED_CHARS %>"
-  />
-
-  <label for="input-text">Message</label>
-  <input
-    name="text"
-    id="input-text"
-    value="<%=locals.text%>"
-    required
-    minlength="<%= process.env.TEXT_MIN_LENGTH %>"
-    maxlength="<%= process.env.TEXT_MAX_LENGTH %>"
-  />
-
-  <a href="/">Back</a>
-  <button type="submit">POST</button>
+<form class="new-message-form" method="POST" action="/new">
+  <div class="input-container">
+    <label for="input-user">Your name</label>
+    <input
+      name="user"
+      id="input-user"
+      value="<%=locals.user%>"
+      minlength="<%= process.env.USER_MIN_LENGTH %>"
+      maxlength="<%= process.env.USER_MAX_LENGTH %>"
+      pattern="<%= process.env.USER_ALLOWED_CHARS %>"
+    />
+  </div>
+  <div class="input-container">
+    <label for="input-text">Message</label>
+    <textarea
+      name="text"
+      id="input-text"
+      value="<%=locals.text%>"
+      required
+      minlength="<%= process.env.TEXT_MIN_LENGTH %>"
+      maxlength="<%= process.env.TEXT_MAX_LENGTH %>"
+      rows="6"
+      autofocus
+    ></textarea>
+  </div>
+  <div class="form-buttons">
+    <a class="button" href="/">Back</a>
+    <button type="submit">POST</button>
+  </div>
 </form>

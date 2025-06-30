@@ -30,14 +30,16 @@
   --base-gap-h: 0.3rem;
   --base-gap-v: 1rem;
 
+  --form-buttons-padding-lr: var(--base-padding-lr);
+
   --message-width: 100%;
   --message-border-radius: 0;
   --message-padding: var(--base-padding);
   --message-gap: var(--base-gap-h);
 
-  --new-message-width: fit-content;
-  --new-message-border-radius: var(--base-radius);
-  --new-message-padding: var(--message-padding);
+  --button-width: fit-content;
+  --button-border-radius: var(--base-radius);
+  --button-padding: var(--message-padding);
 
   --page-padding-tb: 0.5em;
   --page-padding-lr: 1em;
@@ -68,8 +70,9 @@
   :root {
     --message-width: 800px;
     --message-border-radius: var(--base-radius);
-    --new-message-width: 800px;
-    --new-message-border-radius: var(--base-radius);
+    --button-width: 800px;
+    --button-border-radius: var(--base-radius);
+    --form-buttons-padding-lr: 0;
 
     --h1-justify-self: center;
   }
@@ -111,6 +114,25 @@ body {
   display: flex;
   flex-direction: column;
   align-items: stretch;
+}
+
+button,
+a.button {
+  display: block;
+  background: var(--col-gray);
+  color: var(--alt-col-txt);
+  text-align: center;
+  text-decoration: none;
+  width: var(--button-width);
+  border-radius: var(--button-border-radius);
+  padding: var(--button-padding);
+  outline: none;
+  border: none;
+}
+
+button:focus-visible,
+a.button:focus-visible {
+  outline: 2px solid var(--col-accent);
 }
 
 /* || Header */
@@ -159,23 +181,21 @@ body > main {
   gap: var(--main-gap);
 }
 
+main h2 {
+  color: var(--col-accent);
+  text-transform: uppercase;
+}
+
 /* || Messages */
 .message-list {
   flex: 1;
   width: 100%;
   overflow: hidden auto;
 
-  -ms-overflow-style: none; /* IE and Edge */
-  scrollbar-width: none; /* Firefox */
-
   display: flex;
   flex-direction: column-reverse;
   align-items: center;
   gap: var(--base-gap-v);
-}
-
-.message-list::-webkit-scrollbar {
-  display: none; /* Hide scrollbar for Chrome, Safari and Opera */
 }
 
 .message {
@@ -198,6 +218,7 @@ body > main {
 .message-text {
   font-family: var(--text-font);
   color: var(--col-txt-p);
+  white-space: pre-wrap;
 }
 
 .message-user {
@@ -205,19 +226,84 @@ body > main {
   color: var(--col-accent);
 }
 
-.new-message {
+a.button.new-message {
   background: var(--col-accent);
-  color: var(--alt-col-txt);
-  text-align: center;
-  text-decoration: none;
-  width: fit-content;
-  width: var(--new-message-width);
-  border-radius: var(--new-message-border-radius);
-  padding: var(--new-message-padding);
 }
 
 .message-added {
   font-size: var(--smaller-fontsize);
+}
+
+/* || Form */
+
+.new-message-form {
+  flex: 1;
+  width: 100%;
+  overflow: hidden auto;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--base-gap-v);
+}
+
+.input-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+}
+
+.new-message-form label {
+  padding: var(--message-padding);
+  width: var(--message-width);
+  max-width: 100%;
+}
+
+.new-message-form label:has(+ input:optional)::after,
+.new-message-form label:has(+ textarea:optional)::after {
+  content: " (optional)";
+  color: var(--col-gray);
+}
+
+.new-message-form input,
+.new-message-form textarea {
+  background: var(--alt-bg-col);
+  padding: var(--message-padding);
+  width: var(--message-width);
+  max-width: 100%;
+  border-radius: var(--message-border-radius);
+  outline: none;
+  border: none;
+  resize: none;
+}
+
+.new-message-form input:focus,
+.new-message-form textarea:focus {
+  outline: 2px solid var(--col-accent);
+}
+
+#input-user {
+  font-family: var(--user-font);
+}
+#input-text {
+  font-family: var(--text-font);
+}
+
+.form-buttons {
+  display: flex;
+  width: var(--message-width);
+  gap: var(--base-gap-v);
+  padding: calc(3 * var(--base-gap-v)) var(--form-buttons-padding-lr) 0;
+}
+
+.form-buttons > * {
+  flex: 1;
+}
+
+.form-buttons button[type="submit"] {
+  background-color: var(--col-accent);
+  flex: 2;
 }
 
 /* || Footer */
@@ -286,4 +372,14 @@ footer .icon {
 .icon-rotate {
   /* !Font Awesome Free 6.7.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2025 Fonticons, Inc. */
   --mask-image-url: url(data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCA1MTIgNTEyIj48IS0tIUZvbnQgQXdlc29tZSBGcmVlIDYuNy4yIGJ5IEBmb250YXdlc29tZSAtIGh0dHBzOi8vZm9udGF3ZXNvbWUuY29tIExpY2Vuc2UgLSBodHRwczovL2ZvbnRhd2Vzb21lLmNvbS9saWNlbnNlL2ZyZWUgQ29weXJpZ2h0IDIwMjUgRm9udGljb25zLCBJbmMuLS0+PHBhdGggZD0iTTE0Mi45IDE0Mi45Yy0xNy41IDE3LjUtMzAuMSAzOC0zNy44IDU5LjhjLTUuOSAxNi43LTI0LjIgMjUuNC00MC44IDE5LjVzLTI1LjQtMjQuMi0xOS41LTQwLjhDNTUuNiAxNTAuNyA3My4yIDEyMiA5Ny42IDk3LjZjODcuMi04Ny4yIDIyOC4zLTg3LjUgMzE1LjgtMUw0NTUgNTVjNi45LTYuOSAxNy4yLTguOSAyNi4yLTUuMnMxNC44IDEyLjUgMTQuOCAyMi4ybDAgMTI4YzAgMTMuMy0xMC43IDI0LTI0IDI0bC04LjQgMGMwIDAgMCAwIDAgMEwzNDQgMjI0Yy05LjcgMC0xOC41LTUuOC0yMi4yLTE0LjhzLTEuNy0xOS4zIDUuMi0yNi4ybDQxLjEtNDEuMWMtNjIuNi02MS41LTE2My4xLTYxLjItMjI1LjMgMXpNMTYgMzEyYzAtMTMuMyAxMC43LTI0IDI0LTI0bDcuNiAwIC43IDBMMTY4IDI4OGM5LjcgMCAxOC41IDUuOCAyMi4yIDE0LjhzMS43IDE5LjMtNS4yIDI2LjJsLTQxLjEgNDEuMWM2Mi42IDYxLjUgMTYzLjEgNjEuMiAyMjUuMy0xYzE3LjUtMTcuNSAzMC4xLTM4IDM3LjgtNTkuOGM1LjktMTYuNyAyNC4yLTI1LjQgNDAuOC0xOS41czI1LjQgMjQuMiAxOS41IDQwLjhjLTEwLjggMzAuNi0yOC40IDU5LjMtNTIuOSA4My44Yy04Ny4yIDg3LjItMjI4LjMgODcuNS0zMTUuOCAxTDU3IDQ1N2MtNi45IDYuOS0xNy4yIDguOS0yNi4yIDUuMlMxNiA0NDkuNyAxNiA0NDBsMC0xMTkuNiAwLS43IDAtNy42eiIvPjwvc3ZnPg==);
+}
+
+/* Hide scrollbar */
+* {
+  -ms-overflow-style: none; /* IE and Edge */
+  scrollbar-width: none; /* Firefox */
+}
+
+*::-webkit-scrollbar {
+  display: none; /* Hide scrollbar for Chrome, Safari and Opera */
 }
