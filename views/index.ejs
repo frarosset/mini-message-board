@@ -4,26 +4,24 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Mini Message Board</title>
+    <link rel="stylesheet" href="/styles/index.css" />
   </head>
   <body>
-    <%- include("header") _%>
+    <%- include("header",{includeLastUpdated: true}) _%>
     <main>
-      <ul>
-        <a href="/new">Post a new message</a>
+      <a class="new-message" href="/new">Post a new message</a>
+      <ul class="message-list">
         <% for (message of messages){ %>
-        <li>
-          <div>
-            <span><%= message.user %></span>
-            <span><%= dateToStr(message.added) %></span>
-          </div>
-          <p><%= message.text %></p>
+        <li class="message">
+          <header class="message-header">
+            <span class="message-user"><%= message.user %></span>
+            <span>•</span>
+            <span class="message-added"><%= dateToStr(message.added) %></span>
+          </header>
+          <p class="message-text"><%= message.text %></p>
         </li>
         <%}%>
       </ul>
-      <div>
-        <a href="/">RELOAD</a> Last updated: <%= (new Date().toLocaleString([],
-        {})) %>
-      </div>
     </main>
     <%- include("creditFooter") _%>
   </body>

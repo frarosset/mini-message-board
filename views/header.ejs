@@ -1,1 +1,13 @@
-<header><h1>Mini Message Board</h1></header>
+<header>
+  <h1>Mini Message Board</h1>
+  <% if(locals.includeLastUpdated){ %>
+  <a
+    class="last-updated"
+    href="."
+    title="Last updated on <%= (new Date()).toLocaleString([], {}) %>"
+    ><span class="icon icon-rotate"></span> <%= (new Date().toLocaleString([], {
+    month: "numeric", day: "numeric",hour: "numeric",minute: "numeric"})) %>
+  </a>
+
+  <% } %>
+</header>
