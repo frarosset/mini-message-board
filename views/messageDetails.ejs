@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Mini Message Board | Message details</title>
+    <link rel="stylesheet" href="/styles/index.css" />
+  </head>
+  <body>
+    <%- include("header",{includeLastUpdated: true}) _%>
+    <main>
+      <a class="button back-to-messages" href="/">Back to all messages</a>
+      <div class="message-details">
+        <% if(message != null){ %> <%- include("message", {message,
+        dateToStr})%> <%} else {%> This message does not exist! <% } %>
+      </div>
+    </main>
+    <%- include("creditFooter") _%>
+  </body>
+</html>
