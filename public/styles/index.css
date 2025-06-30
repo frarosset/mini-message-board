@@ -1,0 +1,289 @@
+@import url("https://fonts.googleapis.com/css2?family=Bad+Script&family=Montserrat&family=Rockwell&family=Walter+Turncoat&display=swap");
+
+:root {
+  --col-white: #ffffff;
+  --col-black-1: #263238;
+  --col-black-2: #212121;
+  --col-gray: #e0e0e0;
+  --col-accent: orange;
+
+  --bg-col: var(--col-black-1);
+  --alt-bg-col: var(--col-black-2);
+  --col-txt: var(--col-white);
+  --alt-col-txt: var(--col-black-2);
+  --col-txt-p: var(--col-gray);
+
+  --default-font: Rockwell, monospace;
+  --text-font: "Walter Turncoat", cursive;
+  --user-font: "Bad Script", sans-serif;
+  --h1-font: "Walter Turncoat", cursive;
+  --default-lineheight: 1.5;
+  --default-fontsize: max(18px, 2vmin);
+  --smaller-fontsize: 0.8rem;
+  --h1-fontsize: 1.1rem;
+  --h1-shadow-len: 0.25px;
+
+  --base-radius: max(8px, 1em);
+  --base-padding-ud: 0.5rem;
+  --base-padding-lr: 1rem;
+  --base-padding: var(--base-padding-ud) var(--base-padding-lr);
+  --base-gap-h: 0.3rem;
+  --base-gap-v: 1rem;
+
+  --message-width: 100%;
+  --message-border-radius: 0;
+  --message-padding: var(--base-padding);
+  --message-gap: var(--base-gap-h);
+
+  --new-message-width: fit-content;
+  --new-message-border-radius: var(--base-radius);
+  --new-message-padding: var(--message-padding);
+
+  --page-padding-tb: 0.5em;
+  --page-padding-lr: 1em;
+  --page-gap: var(--base-gap-v);
+
+  --main-gap: var(--base-gap-v);
+  --main-padding-ud: var(--base-gap-v);
+
+  --header-padding: 0 var(--base-padding-lr);
+  --header-gap: var(--base-gap-h);
+
+  font-family: var(--default-font);
+  line-height: var(--default-lineheight);
+  font-weight: 400;
+  font-size: var(--default-fontsize);
+
+  color-scheme: light dark;
+  color: var(--col-txt);
+  background-color: var(--bg-col);
+
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+@media screen and (min-width: 800px) {
+  :root {
+    --message-width: 800px;
+    --message-border-radius: var(--base-radius);
+    --new-message-width: 800px;
+    --new-message-border-radius: var(--base-radius);
+
+    --h1-justify-self: center;
+  }
+}
+
+/* ||  Reset */
+*,
+*:before,
+*:after {
+  font-family: inherit;
+  font-size: inherit; /* 100% */
+  line-height: inherit;
+  color: inherit;
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+  vertical-align: baseline;
+  -webkit-tap-highlight-color: transparent;
+  /* see: https://www.joshwcomeau.com/css/custom-css-reset/ */
+  line-height: calc(1em + 0.5rem);
+}
+
+body {
+  margin: 0 auto;
+  min-height: 100vh; /*it is assumed the same for <html>*/
+  min-height: 100dvh; /* if supported */
+  height: 100vh; /*it is assumed the same for <html>*/
+  height: 100dvh; /* if supported */
+
+  min-width: 320px;
+  width: 100%;
+  /* or max-width -- this avoids horizontal scroll bars */
+
+  touch-action: manipulation; /* disable double tap to zoom on some browsers*/
+  user-select: none;
+
+  overflow: hidden hidden;
+
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+}
+
+/* || Header */
+
+body > header {
+  display: grid;
+  align-items: baseline;
+  padding: var(--header-padding);
+  gap: var(--main-gap);
+}
+
+h1 {
+  font-size: var(--h1-fontsize);
+  grid-row: 1;
+  grid-column: 1;
+  justify-self: var(--h1-justify-self, start);
+  font-family: var(--h1-font);
+  font-weight: bold;
+  --len: var(--h1-shadow-len);
+  --nlen: calc(-1 * var(--len));
+  text-shadow: var(--nlen) 0, 0 var(--len), var(--len) 0, 0 var(--nlen),
+    var(--nlen) var(--nlen), var(--len) var(--len), var(--nlen) var(--len),
+    var(--len) var(--nlen);
+}
+
+.last-updated {
+  grid-row: 1;
+  grid-column: 1;
+  justify-self: end;
+  font-size: var(--smaller-fontsize);
+  text-decoration: none;
+  display: flex;
+  align-items: center;
+  gap: var(--base-gap-h);
+}
+
+/* || Main */
+
+body > main {
+  flex: 1;
+  overflow: hidden hidden;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: var(--main-padding-ud) 0;
+  gap: var(--main-gap);
+}
+
+/* || Messages */
+.message-list {
+  flex: 1;
+  width: 100%;
+  overflow: hidden auto;
+
+  -ms-overflow-style: none; /* IE and Edge */
+  scrollbar-width: none; /* Firefox */
+
+  display: flex;
+  flex-direction: column-reverse;
+  align-items: center;
+  gap: var(--base-gap-v);
+}
+
+.message-list::-webkit-scrollbar {
+  display: none; /* Hide scrollbar for Chrome, Safari and Opera */
+}
+
+.message {
+  background-color: var(--alt-bg-col);
+  padding: var(--message-padding);
+  display: flex;
+  flex-direction: column;
+  gap: var(--message-gap);
+  width: var(--message-width);
+  max-width: 100%;
+  border-radius: var(--message-border-radius);
+}
+
+.message-header {
+  display: flex;
+  align-items: baseline;
+  gap: var(--message-gap);
+}
+
+.message-text {
+  font-family: var(--text-font);
+  color: var(--col-txt-p);
+}
+
+.message-user {
+  font-family: var(--user-font);
+  color: var(--col-accent);
+}
+
+.new-message {
+  background: var(--col-accent);
+  color: var(--alt-col-txt);
+  text-align: center;
+  text-decoration: none;
+  width: fit-content;
+  width: var(--new-message-width);
+  border-radius: var(--new-message-border-radius);
+  padding: var(--new-message-padding);
+}
+
+.message-added {
+  font-size: var(--smaller-fontsize);
+}
+
+/* || Footer */
+
+footer {
+  --black: var(--col-grey);
+  --ftr-fontsize: 12px;
+  --ftr-font: "Montserrat";
+  --ftr-padding: 5px;
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  align-items: top;
+  justify-content: center;
+  text-align: center;
+  color: var(--black);
+  font-family: var(--ftr-font), sans-serif;
+  font-size: var(--ftr-fontsize);
+  font-weight: 400;
+  line-height: 1.2;
+  padding: var(--ftr-padding);
+}
+
+footer p,
+footer a {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  text-align: center;
+  gap: 0.5em;
+}
+
+footer a {
+  font-family: "Bad Script";
+  text-decoration: none;
+}
+
+footer .icon {
+  width: 1.3em;
+  height: 1.3em;
+}
+
+/* || Icon */
+
+.icon {
+  background: var(--col-txt);
+  font-size: inherit;
+  width: 1em;
+  height: 1em;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  mask-image: var(--mask-image-url);
+  -webkit-mask-image: var(--mask-image-url);
+  -webkit-mask-repeat: no-repeat;
+  mask-repeat: no-repeat;
+  mask-position: center;
+  mask-size: contain;
+}
+
+.icon-github {
+  /* !Font Awesome Free 6.7.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2025 Fonticons, Inc. */
+  --mask-image-url: url(data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCA0OTYgNTEyIj48IS0tIUZvbnQgQXdlc29tZSBGcmVlIDYuNy4yIGJ5IEBmb250YXdlc29tZSAtIGh0dHBzOi8vZm9udGF3ZXNvbWUuY29tIExpY2Vuc2UgLSBodHRwczovL2ZvbnRhd2Vzb21lLmNvbS9saWNlbnNlL2ZyZWUgQ29weXJpZ2h0IDIwMjUgRm9udGljb25zLCBJbmMuLS0+PHBhdGggZD0iTTE2NS45IDM5Ny40YzAgMi0yLjMgMy42LTUuMiAzLjYtMy4zIC4zLTUuNi0xLjMtNS42LTMuNiAwLTIgMi4zLTMuNiA1LjItMy42IDMtLjMgNS42IDEuMyA1LjYgMy42em0tMzEuMS00LjVjLS43IDIgMS4zIDQuMyA0LjMgNC45IDIuNiAxIDUuNiAwIDYuMi0ycy0xLjMtNC4zLTQuMy01LjJjLTIuNi0uNy01LjUgLjMtNi4yIDIuM3ptNDQuMi0xLjdjLTIuOSAuNy00LjkgMi42LTQuNiA0LjkgLjMgMiAyLjkgMy4zIDUuOSAyLjYgMi45LS43IDQuOS0yLjYgNC42LTQuNi0uMy0xLjktMy0zLjItNS45LTIuOXpNMjQ0LjggOEMxMDYuMSA4IDAgMTEzLjMgMCAyNTJjMCAxMTAuOSA2OS44IDIwNS44IDE2OS41IDIzOS4yIDEyLjggMi4zIDE3LjMtNS42IDE3LjMtMTIuMSAwLTYuMi0uMy00MC40LS4zLTYxLjQgMCAwLTcwIDE1LTg0LjctMjkuOCAwIDAtMTEuNC0yOS4xLTI3LjgtMzYuNiAwIDAtMjIuOS0xNS43IDEuNi0xNS40IDAgMCAyNC45IDIgMzguNiAyNS44IDIxLjkgMzguNiA1OC42IDI3LjUgNzIuOSAyMC45IDIuMy0xNiA4LjgtMjcuMSAxNi0zMy43LTU1LjktNi4yLTExMi4zLTE0LjMtMTEyLjMtMTEwLjUgMC0yNy41IDcuNi00MS4zIDIzLjYtNTguOS0yLjYtNi41LTExLjEtMzMuMyAyLjYtNjcuOSAyMC45LTYuNSA2OSAyNyA2OSAyNyAyMC01LjYgNDEuNS04LjUgNjIuOC04LjVzNDIuOCAyLjkgNjIuOCA4LjVjMCAwIDQ4LjEtMzMuNiA2OS0yNyAxMy43IDM0LjcgNS4yIDYxLjQgMi42IDY3LjkgMTYgMTcuNyAyNS44IDMxLjUgMjUuOCA1OC45IDAgOTYuNS01OC45IDEwNC4yLTExNC44IDExMC41IDkuMiA3LjkgMTcgMjIuOSAxNyA0Ni40IDAgMzMuNy0uMyA3NS40LS4zIDgzLjYgMCA2LjUgNC42IDE0LjQgMTcuMyAxMi4xQzQyOC4yIDQ1Ny44IDQ5NiAzNjIuOSA0OTYgMjUyIDQ5NiAxMTMuMyAzODMuNSA4IDI0NC44IDh6TTk3LjIgMzUyLjljLTEuMyAxLTEgMy4zIC43IDUuMiAxLjYgMS42IDMuOSAyLjMgNS4yIDEgMS4zLTEgMS0zLjMtLjctNS4yLTEuNi0xLjYtMy45LTIuMy01LjItMXptLTEwLjgtOC4xYy0uNyAxLjMgLjMgMi45IDIuMyAzLjkgMS42IDEgMy42IC43IDQuMy0uNyAuNy0xLjMtLjMtMi45LTIuMy0zLjktMi0uNi0zLjYtLjMtNC4zIC43em0zMi40IDM1LjZjLTEuNiAxLjMtMSA0LjMgMS4zIDYuMiAyLjMgMi4zIDUuMiAyLjYgNi41IDEgMS4zLTEuMyAuNy00LjMtMS4zLTYuMi0yLjItMi4zLTUuMi0yLjYtNi41LTF6bS0xMS40LTE0LjdjLTEuNiAxLTEuNiAzLjYgMCA1LjkgMS42IDIuMyA0LjMgMy4zIDUuNiAyLjMgMS42LTEuMyAxLjYtMy45IDAtNi4yLTEuNC0yLjMtNC0zLjMtNS42LTJ6Ii8+PC9zdmc+);
+}
+
+.icon-rotate {
+  /* !Font Awesome Free 6.7.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2025 Fonticons, Inc. */
+  --mask-image-url: url(data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCA1MTIgNTEyIj48IS0tIUZvbnQgQXdlc29tZSBGcmVlIDYuNy4yIGJ5IEBmb250YXdlc29tZSAtIGh0dHBzOi8vZm9udGF3ZXNvbWUuY29tIExpY2Vuc2UgLSBodHRwczovL2ZvbnRhd2Vzb21lLmNvbS9saWNlbnNlL2ZyZWUgQ29weXJpZ2h0IDIwMjUgRm9udGljb25zLCBJbmMuLS0+PHBhdGggZD0iTTE0Mi45IDE0Mi45Yy0xNy41IDE3LjUtMzAuMSAzOC0zNy44IDU5LjhjLTUuOSAxNi43LTI0LjIgMjUuNC00MC44IDE5LjVzLTI1LjQtMjQuMi0xOS41LTQwLjhDNTUuNiAxNTAuNyA3My4yIDEyMiA5Ny42IDk3LjZjODcuMi04Ny4yIDIyOC4zLTg3LjUgMzE1LjgtMUw0NTUgNTVjNi45LTYuOSAxNy4yLTguOSAyNi4yLTUuMnMxNC44IDEyLjUgMTQuOCAyMi4ybDAgMTI4YzAgMTMuMy0xMC43IDI0LTI0IDI0bC04LjQgMGMwIDAgMCAwIDAgMEwzNDQgMjI0Yy05LjcgMC0xOC41LTUuOC0yMi4yLTE0LjhzLTEuNy0xOS4zIDUuMi0yNi4ybDQxLjEtNDEuMWMtNjIuNi02MS41LTE2My4xLTYxLjItMjI1LjMgMXpNMTYgMzEyYzAtMTMuMyAxMC43LTI0IDI0LTI0bDcuNiAwIC43IDBMMTY4IDI4OGM5LjcgMCAxOC41IDUuOCAyMi4yIDE0LjhzMS43IDE5LjMtNS4yIDI2LjJsLTQxLjEgNDEuMWM2Mi42IDYxLjUgMTYzLjEgNjEuMiAyMjUuMy0xYzE3LjUtMTcuNSAzMC4xLTM4IDM3LjgtNTkuOGM1LjktMTYuNyAyNC4yLTI1LjQgNDAuOC0xOS41czI1LjQgMjQuMiAxOS41IDQwLjhjLTEwLjggMzAuNi0yOC40IDU5LjMtNTIuOSA4My44Yy04Ny4yIDg3LjItMjI4LjMgODcuNS0zMTUuOCAxTDU3IDQ1N2MtNi45IDYuOS0xNy4yIDguOS0yNi4yIDUuMlMxNiA0NDkuNyAxNiA0NDBsMC0xMTkuNiAwLS43IDAtNy42eiIvPjwvc3ZnPg==);
+}
