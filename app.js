@@ -22,6 +22,15 @@ app.use("/new", newRouter);
 app.use("/message", messageRouter);
 app.use(indexRouter);
 
+// Ignore favicon icon / ... request
+app.get(
+  ["/favicon.ico", "/.well-known/appspecific/com.chrome.devtools.json"],
+  (req, res) => {
+    // console.log(`Ignoring request of ${req.path}`);
+    res.sendStatus(204); // No Content
+  }
+);
+
 // catch-all route throwing a 404 error
 app.use((req, res, next) => {
   throw new CustomNotFoundError("Page not found");
