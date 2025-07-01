@@ -50,6 +50,7 @@
 
   --main-gap: var(--base-gap-v);
   --main-padding-ud: var(--base-gap-v);
+  --main-padding-lr: 0;
 
   --header-padding: 0 var(--base-padding-lr);
   --header-gap: var(--base-gap-h);
@@ -79,6 +80,7 @@
     --button-width: 800px;
     --button-border-radius: var(--base-radius);
     --form-buttons-padding-lr: 0;
+    --main-padding-lr: var(--base-padding-lr);
 
     --h1-justify-self: center;
   }
@@ -198,8 +200,12 @@ body > main {
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding: var(--main-padding-ud) 0;
+  padding: var(--main-padding-ud) var(--main-padding-lr);
   gap: var(--main-gap);
+}
+
+body > main * {
+  max-width: 100%;
 }
 
 main h2 {
