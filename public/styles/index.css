@@ -262,6 +262,28 @@ a.button.new-message {
   font-size: var(--smaller-fontsize);
 }
 
+/* || Message Details */
+
+a.button.back-to-messages {
+  width: max-content;
+  max-width: 100%;
+}
+
+.message-details {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 0;
+  width: 100%;
+}
+
+.message-details .message {
+  align-items: center;
+  max-height: 100%;
+  overflow: hidden auto;
+}
+
 /* || Form */
 
 .new-message-form {

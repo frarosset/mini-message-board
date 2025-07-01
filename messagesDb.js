@@ -1,4 +1,4 @@
-const newMessage = (text = "", user = "(anonymous)") => ({
+const newMessage = (text = "", user = "anonymous") => ({
   text,
   user,
   added: new Date(),
