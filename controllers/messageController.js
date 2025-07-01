@@ -8,7 +8,7 @@ const getMessageController = asyncHandler(async (req, res) => {
   const message = await getMessage(id);
 
   if (!message) {
-    throw new CustomNotFoundError("The message does not exists");
+    throw new CustomNotFoundError("The message does not exist");
   }
 
   res.render("messageDetails", { message, dateToStr: getDateStr });

@@ -30,7 +30,11 @@ app.use((req, res, next) => {
 // Error handling
 app.use((error, req, res, next) => {
   console.log(error);
-  res.status(error.statusCode || 500).send(error.message);
+
+  const code = error.statusCode || 500;
+  const message = error.message;
+
+  res.status(code).render("error", { code, message });
 });
 
 app.listen(PORT, () => console.log("Server listening on port", PORT));

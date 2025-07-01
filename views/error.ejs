@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Mini Message Board | Error</title>
+    <link rel="stylesheet" href="/styles/index.css" />
+  </head>
+  <body>
+    <%- include("header") _%>
+    <main>
+      <a class="button back-to-messages" href="/">Back to all messages</a>
+      <div>
+        <h2><%= code %></h2>
+        <p><%= message %></p>
+      </div>
+    </main>
+    <%- include("creditFooter") _%>
+  </body>
+</html>
