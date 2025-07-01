@@ -10,9 +10,11 @@
     <%- include("header") _%>
     <main>
       <a class="button back-to-messages" href="/">Back to all messages</a>
-      <div>
-        <h2><%= code %></h2>
-        <p><%= message %></p>
+      <div class="error-cnt">
+        <div class="error">
+          <h2><%= code %></h2>
+          <p><%= message %></p>
+        </div>
       </div>
     </main>
     <%- include("creditFooter") _%>
