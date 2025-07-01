@@ -1,4 +1,4 @@
-@import url("https://fonts.googleapis.com/css2?family=Bad+Script&family=Montserrat&family=Rockwell&family=Walter+Turncoat&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Bad+Script&family=Montserrat&family=Walter+Turncoat&family=Roboto+Slab&display=swap");
 
 :root {
   --col-white: #ffffff;
@@ -13,7 +13,7 @@
   --alt-col-txt: var(--col-black-2);
   --col-txt-p: var(--col-gray);
 
-  --default-font: Rockwell, monospace;
+  --default-font: "Rockwell", "Roboto Slab", monospace;
   --text-font: "Walter Turncoat", cursive;
   --user-font: "Bad Script", sans-serif;
   --h1-font: "Walter Turncoat", cursive;
