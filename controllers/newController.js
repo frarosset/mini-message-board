@@ -11,7 +11,7 @@ const postNewController = asyncHandler(async (req, res, next) => {
   try {
     // apply moderation
     const moderationOutput = await textModeration(`${user}: ${text}`);
-    console.log(moderationOutput);
+    // console.log(moderationOutput);
 
     // filter out harmful content
     if (moderationOutput.isHarmful) {

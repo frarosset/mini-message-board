@@ -115,7 +115,7 @@ body {
   /* or max-width -- this avoids horizontal scroll bars */
 
   touch-action: manipulation; /* disable double tap to zoom on some browsers*/
-  user-select: none;
+  user-select: text;
 
   overflow: hidden hidden;
 
@@ -137,6 +137,7 @@ a.button {
   outline: none;
   border: none;
   transition: all 0.1s;
+  user-select: none;
 }
 
 button:focus-visible,
