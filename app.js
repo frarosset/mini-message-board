@@ -32,7 +32,7 @@ app.use((error, req, res, next) => {
   console.log(error);
 
   const code = error.statusCode || 500;
-  const message = error.message;
+  const message = code !== 500 ? error.message : "Internal server error";
 
   res.status(code).render("error", { code, message });
 });
