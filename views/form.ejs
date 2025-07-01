@@ -1,14 +1,28 @@
 <%# Form with method and action makes a network request %>
 <form class="new-message-form" method="POST" action="/new">
   <div class="input-container">
-    <label for="input-user">Your name</label>
+    <div class="label-container">
+      <label for="input-user">Your name</label>
+      <span class="input-remaining-info">
+        <span id="input-user-remaining"></span>
+        /<%=process.env.USER_MAX_LENGTH%>
+        </span>
+      </span>
+    </div>
     <input name="user" id="input-user" value="<%=locals.user || "" %>"
     minlength="<%= process.env.USER_MIN_LENGTH %>" maxlength="<%=
     process.env.USER_MAX_LENGTH %>" pattern="<%= process.env.USER_ALLOWED_CHARS
     %>" />
   </div>
   <div class="input-container">
-    <label for="input-text">Message</label>
+    <div class="label-container">
+      <label for="input-text">Message</label>
+      <span class="input-remaining-info">
+        <span id="input-text-remaining"></span>
+        /<%=process.env.TEXT_MAX_LENGTH%>
+        </span>
+      </span>
+    </div>
     <textarea
       name="text"
       id="input-text"
@@ -20,6 +34,44 @@
     >
 <%=locals.text || ""%></textarea
     >
+
+    <script>
+      // based on https://stackoverflow.com/a/12745387
+      (() => {
+        const inputText = document.getElementById("input-text");
+        const inputTextRemaining = document.getElementById(
+          "input-text-remaining"
+        );
+        const inputUser = document.getElementById("input-user");
+        const inputUserRemaining = document.getElementById(
+          "input-user-remaining"
+        );
+
+        function remainingCounter(input, remaining) {
+          const maxlength = input.maxLength;
+          if (input.value.length > maxlength) {
+            input.value = input.value.substring(0, maxlength);
+            return false;
+          } else {
+            remaining.textContent = maxlength - input.value.length;
+          }
+        }
+
+        function inputTextRemainingCounter() {
+          remainingCounter(inputText, inputTextRemaining);
+        }
+
+        function inputUserRemainingCounter() {
+          remainingCounter(inputUser, inputUserRemaining);
+        }
+
+        inputText.onkeyup = inputTextRemainingCounter;
+        inputTextRemainingCounter();
+
+        inputUser.onkeyup = inputUserRemainingCounter;
+        inputUserRemainingCounter();
+      })();
+    </script>
   </div>
   <div class="form-buttons">
     <a class="button" href="/">Back</a>

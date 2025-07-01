@@ -336,14 +336,16 @@ a.button.back-to-messages {
   width: 100%;
 }
 
-.new-message-form label {
+.new-message-form .label-container {
   padding: var(--message-padding);
   width: var(--message-width);
   max-width: 100%;
+  display: flex;
+  justify-content: space-between;
 }
 
-.new-message-form label:has(+ input:optional)::after,
-.new-message-form label:has(+ textarea:optional)::after {
+.new-message-form .label-container:has(+ input:optional) label::after,
+.new-message-form .label-container:has(+ textarea:optional) label::after {
   content: " (optional)";
   color: var(--col-gray);
 }
