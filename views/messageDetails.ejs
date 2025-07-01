@@ -10,7 +10,7 @@
     <%- include("header",{includeLastUpdated: true}) _%>
     <main>
       <a class="button back-to-messages" href="/">Back to all messages</a>
-      <div class="message-details">
+      <div class="message-details centered-text">
         <% if(message != null){ %> <%- include("message", {message,
         dateToStr})%> <%} else {%> This message does not exist! <% } %>
       </div>

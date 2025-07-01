@@ -10,6 +10,7 @@
     <%- include("header",{includeLastUpdated: true}) _%>
     <main>
       <a class="button new-message" href="/new">Post a new message</a>
+      <% if ( messages.length >0){ %>
       <ul class="message-list">
         <% for (let idx= messages.length -1; idx>=0; idx--){ const message =
         messages[idx]; %>
@@ -20,6 +21,9 @@
         </li>
         <%}%>
       </ul>
+      <% } else { %>
+      <p class="centered-text">No message yet!</p>
+      <% } %>
     </main>
     <%- include("creditFooter") _%>
   </body>

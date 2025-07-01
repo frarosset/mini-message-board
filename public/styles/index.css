@@ -273,8 +273,7 @@ a.button.back-to-messages {
   max-width: 100%;
 }
 
-.message-details,
-.error-cnt {
+.centered-text {
   flex: 1;
   display: flex;
   align-items: center;
@@ -283,8 +282,7 @@ a.button.back-to-messages {
   width: 100%;
 }
 
-.message-details .message,
-.error {
+.centered-text > * {
   align-items: center;
   max-height: 100%;
   overflow: hidden auto;
