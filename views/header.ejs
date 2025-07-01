@@ -4,9 +4,10 @@
   <a
     class="last-updated"
     href="javascript:window.location.href=window.location.href"
-    title="Last updated on <%= (new Date()).toLocaleString([], {}) %>"
-    ><span class="icon icon-rotate"></span> <%= (new Date().toLocaleString([], {
-    month: "numeric", day: "numeric",hour: "numeric",minute: "numeric"})) %>
+    title="Last updated on <%= (new Date()).toLocaleString(['en-gb'], {}) %>"
+    ><span class="icon icon-rotate"></span> <%= (new
+    Date().toLocaleString(['en-gb'], { month: "numeric", day: "numeric",hour:
+    "numeric",minute: "numeric"})) %>
   </a>
 
   <% } %>
