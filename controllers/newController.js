@@ -1,10 +1,11 @@
 const { addMessage } = require("../messagesDb.js");
 const textModeration = require("../utils/textModeration.js");
 const { matchedData } = require("express-validator");
+const asyncHandler = require("express-async-handler");
 
 const getNewController = (req, res) => res.render("new");
 
-const postNewController = async (req, res, next) => {
+const postNewController = asyncHandler(async (req, res, next) => {
   const { text, user } = matchedData(req); // req.body
 
   try {
@@ -28,6 +29,6 @@ const postNewController = async (req, res, next) => {
   } catch (error) {
     next(error);
   }
-};
+});
 
 module.exports = { get: getNewController, post: postNewController };

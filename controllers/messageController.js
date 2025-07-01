@@ -1,11 +1,17 @@
 const getDateStr = require("../utils/dateToStr.js");
 const { getMessage } = require("../messagesDb");
+const asyncHandler = require("express-async-handler");
+const CustomNotFoundError = require("../errors/CustomNotFoundError");
 
-const getMessageController = (req, res) => {
+const getMessageController = asyncHandler(async (req, res) => {
   const id = req.params.id;
-  const message = getMessage(id);
+  const message = await getMessage(id);
+
+  if (!message) {
+    throw new CustomNotFoundError("The message does not exists");
+  }
 
   res.render("messageDetails", { message, dateToStr: getDateStr });
-};
+});
 
 module.exports = { get: getMessageController };
