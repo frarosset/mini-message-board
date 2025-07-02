@@ -24,7 +24,7 @@ const postNewController = asyncHandler(async (req, res, next) => {
     }
 
     // add message to board
-    addMessage(text, user);
+    addMessage(text, user || process.env.USER_DEFAULT_NAME);
     res.redirect("/");
   } catch (error) {
     next(error);

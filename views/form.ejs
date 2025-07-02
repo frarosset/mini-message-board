@@ -9,7 +9,7 @@
         </span>
       </span>
     </div>
-    <input name="user" id="input-user" value="<%=locals.user || "" %>"
+    <input name="user" id="input-user"  placeholder="<%=process.env.USER_DEFAULT_NAME || "" %>" value="<%=locals.user || "" %>"
     minlength="<%= process.env.USER_MIN_LENGTH %>" maxlength="<%=
     process.env.USER_MAX_LENGTH %>" pattern="<%= process.env.USER_ALLOWED_CHARS
     %>" />
