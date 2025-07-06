@@ -2,7 +2,11 @@
   <header class="message-header">
     <span class="message-user"><%= message.user %></span>
     <span>•</span>
-    <span class="message-added"><%= dateToStr(message.added) %></span>
+    <span
+      class="message-added date"
+      data-date="<%= message.added.toISOString() %>"
+      ><%= dateToStr(message.added) %> (UTC)</span
+    >
   </header>
   <p class="message-text"><%= message.text %></p>
 </div>
