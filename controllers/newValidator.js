@@ -57,4 +57,4 @@ const newPostValidation = [
   },
 ];
 
-module.exports = { post: newPostValidation };
+module.exports = newPostValidation;
