@@ -1,5 +1,5 @@
 <header>
-  <h1>Mini Message Board</h1>
+  <h1 class=<%= locals.title ? "custom" : "" %>><%= locals.title || "Mini Message Board" %></h1>
   <% if(locals.includeLastUpdated){ %>
   <a
     class="last-updated"

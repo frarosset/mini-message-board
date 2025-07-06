@@ -172,6 +172,11 @@ h1 {
   font-size: var(--h1-fontsize);
   grid-row: 1;
   grid-column: 1;
+  font-weight: bold;
+  justify-self: center;
+}
+
+h1:not(.custom) {
   justify-self: var(--h1-justify-self, start);
   font-family: var(--h1-font);
   font-weight: bold;
@@ -404,6 +409,7 @@ a.button.back-to-messages {
 .form-msg-cnt p {
   text-align: center;
   text-wrap: balance;
+  color: var(--col-txt-p);
 }
 
 .form-msg-cnt p,

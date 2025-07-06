@@ -46,7 +46,7 @@ const newPostValidation = [
     const result = validationResult(req);
 
     if (!result.isEmpty()) {
-      return res.status(400).render("newInvalid", {
+      return res.status(400).render("new", {
         validationErrors: result.errors,
         ...matchedData(req, { onlyValidData: false, includeOptionals: true }),
       });

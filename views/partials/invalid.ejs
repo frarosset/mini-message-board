@@ -1,0 +1,16 @@
+<% if(validationErrors) { %>
+<div class="form-msg-cnt">
+  <h2>Invalid content detected</h2>
+  <%#
+  <p>It looks like you are trying to post some invalid content:</p>
+  %>
+  <ul class="error-list">
+    <% for (const err of validationErrors){%>
+    <li class="err-<%= err.path%>"><%= err.msg%></li>
+    <%};%>
+  </ul>
+  <%#
+  <p>Please revise it and try again.</p>
+  %>
+</div>
+<% } %>

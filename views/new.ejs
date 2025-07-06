@@ -7,11 +7,14 @@
     <link rel="stylesheet" href="/styles/index.css" />
   </head>
   <body>
-    <%- include("partials/header") _%>
+    <%- include("partials/header",{title: "Post a new message"}) %>
     <main>
-      <h2>Post a new message</h2>
-      <%- include("partials/form") _%>
+      <%- include("partials/invalid",{validationErrors:
+      locals.validationErrors}) %>
+      <%-include("partials/harmful",{harmfulCategories:
+      locals.harmfulCategories}) %> <%-
+      include("partials/form",{text:locals.text, user:locals.user}) %>
     </main>
-    <%- include("partials/creditFooter") _%>
+    <%- include("partials/creditFooter") %>
   </body>
 </html>
