@@ -1,4 +1,4 @@
-const { addMessage } = require("../messagesDb.js");
+const { addMessage } = require("../db/queries.js");
 const textModeration = require("../utils/textModeration.js");
 const { matchedData } = require("express-validator");
 const asyncHandler = require("express-async-handler");
@@ -27,7 +27,7 @@ const postNewController = [
       }
 
       // add message to board
-      addMessage(text, user || process.env.USER_DEFAULT_NAME);
+      await addMessage(text, user || process.env.USER_DEFAULT_NAME);
       res.redirect("/");
     } catch (error) {
       next(error);

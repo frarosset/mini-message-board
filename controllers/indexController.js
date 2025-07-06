@@ -1,5 +1,5 @@
 const getDateStr = require("../utils/dateToStr.js");
-const { getMessages } = require("../messagesDb.js");
+const { getMessages } = require("../db/queries.js");
 const asyncHandler = require("express-async-handler");
 
 const getIndexController = asyncHandler(async (req, res) => {
