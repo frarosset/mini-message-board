@@ -7,14 +7,14 @@
     <link rel="stylesheet" href="/styles/index.css" />
   </head>
   <body>
-    <%- include("header",{includeLastUpdated: true}) _%>
+    <%- include("partials/header",{includeLastUpdated: true}) _%>
     <main>
       <a class="button back-to-messages" href="/">Back to all messages</a>
       <div class="message-details centered-text">
-        <% if(message != null){ %> <%- include("message", {message,
+        <% if(message != null){ %> <%- include("partials/message", {message,
         dateToStr})%> <%} else {%> This message does not exist! <% } %>
       </div>
     </main>
-    <%- include("creditFooter") _%>
+    <%- include("partials/creditFooter") _%>
   </body>
 </html>

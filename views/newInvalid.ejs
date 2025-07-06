@@ -7,7 +7,7 @@
     <link rel="stylesheet" href="/styles/index.css" />
   </head>
   <body>
-    <%- include("header") _%>
+    <%- include("partials/header") _%>
     <main>
       <h2>Invalid content detected</h2>
       <div class="form-msg-cnt">
@@ -23,8 +23,8 @@
         <p>Please revise it and try again.</p>
         %>
       </div>
-      <%- include("form",{text,user}) _%>
+      <%- include("partials/form",{text,user}) _%>
     </main>
-    <%- include("creditFooter") _%>
+    <%- include("partials/creditFooter") _%>
   </body>
 </html>
