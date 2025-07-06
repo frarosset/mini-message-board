@@ -1,4 +1,4 @@
-const getDateStr = require("../utils/dateToStr.js");
+const getDateStr = require("../public/js/dateToStr.js").default;
 const { getMessages } = require("../db/queries.js");
 const asyncHandler = require("express-async-handler");
 

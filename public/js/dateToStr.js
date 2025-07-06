@@ -93,4 +93,4 @@ function isAYearAgo(date) {
   return aWeekAgo.toDateString() === date.toDateString();
 }
 
-module.exports = dateToStr;
+export default dateToStr;

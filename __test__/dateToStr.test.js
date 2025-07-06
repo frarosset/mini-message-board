@@ -1,4 +1,4 @@
-const dateToStr = require("./dateToStr.js");
+const dateToStr = require("../public/js/dateToStr.js").default;
 
 const nowStr = [2025, 5, 25, 13, 1, 0]; //2025-06-25T11:01:00
 
