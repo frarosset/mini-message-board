@@ -20,8 +20,18 @@ const previousYearDateOptions = {
   ...timeOptions,
 };
 
-function dateToStr(date = new Date()) {
+const simpleDateOptions = {
+  year: "2-digit",
+  month: "numeric",
+  day: "numeric",
+  ...timeOptions,
+};
+
+function dateToStr(date = new Date(), variant = null) {
   const msAgo = getMsAgo(date);
+
+  if ((variant = "simple"))
+    return date.toLocaleDateString(locale, simpleDateOptions);
 
   if (msAgo < 0) {
     throw new Error("Future times not implemented yet!");

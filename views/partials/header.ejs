@@ -1,14 +1,17 @@
 <header>
   <h1 class=<%= locals.title ? "custom" : "" %>><%= locals.title || "Mini Message Board" %></h1>
-  <% if(locals.includeLastUpdated){ %>
-  <a
-    class="last-updated"
-    href="javascript:window.location.href=window.location.href"
-    title="Last updated on <%= (new Date()).toLocaleString(['en-gb'], {}) %>"
-    ><span class="icon icon-rotate"></span> <%= (new
-    Date().toLocaleString(['en-gb'], { month: "numeric", day: "numeric",hour:
-    "numeric",minute: "numeric"})) %>
-  </a>
-
+  <% now = new Date(); 
+     if(locals.includeLastUpdated){ %>
+    <a
+      class="last-updated"
+      href="javascript:window.location.href=window.location.href">
+      <span class="icon icon-rotate"></span>
+      <span
+      class="simple-date"
+      data-date="<%= now.toISOString() %>"
+      title="last updated on"
+      ><%= dateToStr(now, "simple") %> (UTC)</span
+    >
+    </a>
   <% } %>
 </header>
