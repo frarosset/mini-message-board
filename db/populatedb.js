@@ -12,7 +12,7 @@ const SQL = `
         "user" VARCHAR(${Number(process.env.USER_MAX_LENGTH)}) DEFAULT '${
   process.env.USER_DEFAULT_NAME
 }',
-        added TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+        added TIMESTAMPTZ DEFAULT CURRENT_TIMESTAMP
     );
 
     INSERT INTO messages (text, "user") VALUES
