@@ -1,5 +1,6 @@
 const express = require("express");
 require("dotenv").config();
+const initWebSocket = require("./websockets/wss.js");
 
 const PORT = process.env.PORT || 80;
 
@@ -46,4 +47,8 @@ app.use((error, req, res, next) => {
   res.status(code).render("error", { code, message });
 });
 
-app.listen(PORT, () => console.log("Server listening on port", PORT));
+const server = app.listen(PORT, () =>
+  console.log("Server listening on port", PORT)
+);
+
+initWebSocket(server);
