@@ -3,6 +3,7 @@ const { broadcast } = require("./broadcast.js");
 const {
   getUpdatedDataForMessageList,
 } = require("../controllers/indexController.js");
+const notifier = require("../events/notifier.js");
 
 function initWebSocket(server) {
   // This connection is designed to notify connected clients about
@@ -23,17 +24,15 @@ function initWebSocket(server) {
     });
   });
 
-  // Currently, the server broadcasts the updated message list HTML
-  // (along with a timestamp) to all connected clients on a periodic
-  // interval. A future update will optimize this by broadcasting
-  // only when the message list has changed.
+  // The server emits updated message list HTML (with a timestamp) to
+  // all connected clients only when the database is modified, enabling
+  // efficient real-time syncing. This is implemented via a custom EventEmitter.
 
   const writeMessage = async () => {
     const data = await getUpdatedDataForMessageList();
     broadcast(wss, data);
   };
-
-  setInterval(writeMessage, 10000);
+  notifier.on("db-updated", writeMessage);
 }
 
 module.exports = initWebSocket;

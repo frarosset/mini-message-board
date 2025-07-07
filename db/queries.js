@@ -1,4 +1,5 @@
 const pool = require("./pool.js");
+const notifier = require("../events/notifier.js");
 
 const getMessages = async () => {
   const { rows } = await pool.query("SELECT * FROM messages");
@@ -15,6 +16,7 @@ const addMessage = async (text, user) => {
     text,
     user,
   ]);
+  notifier.emit("db-updated");
 };
 
 module.exports = { getMessages, addMessage, getMessage };
