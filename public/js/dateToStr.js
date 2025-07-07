@@ -30,7 +30,7 @@ const simpleDateOptions = {
 function dateToStr(date = new Date(), variant = null) {
   const msAgo = getMsAgo(date);
 
-  if ((variant = "simple"))
+  if (variant === "simple")
     return date.toLocaleDateString(locale, simpleDateOptions);
 
   if (msAgo < 0) {
