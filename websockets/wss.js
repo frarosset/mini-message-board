@@ -1,5 +1,5 @@
 const WebSocket = require("ws");
-const { broadcast } = require("./broadcast.js");
+const { debouncedWithMaxWaitBroadcast } = require("./broadcast.js");
 const {
   getUpdatedDataForMessageList,
 } = require("../controllers/indexController.js");
@@ -30,7 +30,7 @@ function initWebSocket(server) {
 
   const writeMessage = async () => {
     const data = await getUpdatedDataForMessageList();
-    broadcast(wss, data);
+    debouncedWithMaxWaitBroadcast(wss, data);
   };
   notifier.on("db-updated", writeMessage);
 }
