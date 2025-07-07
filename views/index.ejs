@@ -11,20 +11,7 @@
     <%- include("partials/header",{includeLastUpdated: true, dateToStr}) _%>
     <main>
       <a class="button new-message" href="/new">Post a new message</a>
-      <% if ( messages.length >0){ %>
-      <ul class="message-list">
-        <% for (let idx= messages.length -1; idx>=0; idx--){ const message =
-        messages[idx]; %>
-        <li>
-          <a href="/message/<%=message.id%>">
-            <%- include("partials/message", {message, dateToStr}) _%>
-          </a>
-        </li>
-        <%}%>
-      </ul>
-      <% } else { %>
-      <p class="centered-text">No message yet!</p>
-      <% } %>
+      <%- include("partials/messageList", {messages, dateToStr}) _%>
     </main>
     <%- include("partials/creditFooter") _%>
   </body>
