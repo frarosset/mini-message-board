@@ -39,6 +39,7 @@ function connectSocket() {
     const dataObj = JSON.parse(event.data);
     messageList.innerHTML = dataObj.messageListHtml;
     lastUpdatedOn.dataset.date = dataObj.now;
+    document.body.dataset.now = dataObj.now;
     dateFormatter();
   };
 }

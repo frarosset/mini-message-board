@@ -7,7 +7,7 @@
     <link rel="stylesheet" href="/styles/index.css" />
     <%- include("partials/dateScript") _%>
   </head>
-  <body>
+  <body data-now="<%= (new Date()).toISOString() %>">
     <%- include("partials/header",{includeLastUpdated: true, dateToStr}) _%>
     <main>
       <a class="button back-to-messages" href="/">Back to all messages</a>

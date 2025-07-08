@@ -8,7 +8,7 @@
     <%- include("partials/dateScript") _%>
     <script type="module" src="/js/clientWss.js" defer></script>
   </head>
-  <body>
+  <body data-now="<%= (new Date()).toISOString() %>">
     <%- include("partials/header",{includeLastUpdated: true, dateToStr}) _%>
     <main>
       <a class="button new-message" href="/new">Post a new message</a>

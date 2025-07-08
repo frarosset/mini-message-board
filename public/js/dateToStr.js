@@ -27,14 +27,17 @@ const simpleDateOptions = {
   ...timeOptions,
 };
 
-function dateToStr(date = new Date(), variant = null) {
-  const msAgo = getMsAgo(date);
+function dateToStr(date = new Date(), variant = null, skewMs = 0) {
+  let msAgo = getMsAgo(date) - skewMs;
 
   if (variant === "simple")
     return date.toLocaleDateString(locale, simpleDateOptions);
 
   if (msAgo < 0) {
-    throw new Error("Future times not implemented yet!");
+    console.log(
+      `Future times not implemented yet! The date is ${-msAgo} ms in the future and formatted in simple format`
+    );
+    return date.toLocaleDateString(locale, simpleDateOptions) + "*";
   }
 
   if (isWithin(msAgo, "minute")) {
