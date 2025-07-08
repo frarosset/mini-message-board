@@ -51,7 +51,10 @@ document.onvisibilitychange = () => {
   if (document.visibilityState === "hidden") {
     socket?.close();
   } else if (socket?.readyState !== WebSocket.OPEN) {
-    connectSocket();
+    // new messages might have been posted while tab was not visible
+    // and not connected to server via WebSockets: reload the page
+    // to fetch them.
+    location.reload();
   }
 };
 
